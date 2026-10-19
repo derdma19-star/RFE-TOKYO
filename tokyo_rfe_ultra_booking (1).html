@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06142c">
+<title>TOKYO RFE · PTFS FRANCE Japan</title>
+<style>
+:root{
+  --bg:#06142c;
+  --panel:rgba(5,19,43,.88);
+  --panel2:rgba(10,35,70,.85);
+  --line:rgba(137,190,255,.22);
+  --text:#f5f8ff;
+  --muted:#9fb3d3;
+  --blue:#168bff;
+  --cyan:#39d8ff;
+  --gold:#ffd166;
+  --green:#38e5a4;
+  --red:#ff5d7d;
+  --purple:#b87aff;
+  --shadow:0 24px 80px #0007;
+  --radius:16px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;letter-spacing:.005em;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:-2;background:
+  radial-gradient(ellipse at 12% 8%,#087bff28,transparent 42%),
+  radial-gradient(ellipse at 88% 75%,#b13cff18,transparent 48%),
+  radial-gradient(ellipse at 50% 100%,#168bff12,transparent 40%),
+  #06142c}
+.ambient:after{content:"";position:absolute;inset:0;opacity:.14;background-image:linear-gradient(#8cbaff12 1px,transparent 1px),linear-gradient(90deg,#8cbaff12 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black 30%,transparent 90%)}
+
+.shell{width:min(1480px,94%);margin:auto}
+.topbar{position:sticky;top:0;z-index:30;background:#06142ce8;backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:950;letter-spacing:.08em}
+.logo-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid #72b9ff;box-shadow:inset 0 0 18px #128dff35,0 0 22px #128dff25;color:var(--gold);font-size:1.25rem;transition:transform .3s var(--ease)}
+.logo:hover .logo-mark{transform:rotate(-12deg) scale(1.05)}
+.logo small{display:block;font-size:.65rem;letter-spacing:.18em;color:var(--gold);font-weight:800;margin-top:2px}
+.navlinks{display:flex;gap:6px;align-items:center}
+.navlinks a{padding:10px 14px;border-radius:11px;color:#c4d5f0;font-size:.9rem;transition:background .2s,color .2s}
+.navlinks a:hover,.navlinks a.active{background:#1c4b8035;color:white}
+.navright{display:flex;align-items:center;gap:10px}
+.clock{font-variant-numeric:tabular-nums;font-size:.82rem;color:var(--muted);padding:9px 12px;border:1px solid var(--line);border-radius:11px;background:#ffffff06}
+.menuBtn{display:none;background:#10274b;color:white;border:1px solid var(--line);padding:10px 12px;border-radius:11px}
+
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:12px 18px;border-radius:12px;border:1px solid transparent;font-weight:850;font-size:.9rem;transition:transform .2s var(--ease),border-color .2s,filter .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active{transform:translateY(0)}
+.btn-primary{color:#07152a;background:linear-gradient(115deg,#ffe49a,#ffc447);box-shadow:0 8px 28px #ffc44730}
+.btn-primary:hover{box-shadow:0 12px 32px #ffc44745}
+.btn-blue{background:linear-gradient(110deg,#138aff,#2657ff);color:white;box-shadow:0 8px 25px #138aff30}
+.btn-glass{border-color:var(--line);background:#ffffff08;color:white}
+.btn-glass:hover{background:#ffffff12;border-color:#5a9fe0}
+.btn-danger{background:#ff5d7d18;border-color:#ff5d7d55;color:#ffb3c1}
+.btn-danger:hover{background:#ff5d7d28}
+.btn-sm{padding:8px 12px;font-size:.78rem;border-radius:9px}
+
+/* HERO */
+.hero{position:relative;isolation:isolate;min-height:560px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:
+  linear-gradient(105deg,#06142cf8 0%,#06142cd0 40%,#06142c60 100%),
+  radial-gradient(ellipse at 70% 40%,#1a5fb8 0%,transparent 55%),
+  linear-gradient(180deg,#0a1f3d 0%,#06142c 100%)}
+.hero:before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 75% 25%,#39d8ff18,transparent 35%),
+  radial-gradient(circle at 20% 80%,#ffd16610,transparent 40%);
+  z-index:-1;animation:heroGlow 12s ease-in-out infinite alternate}
+@keyframes heroGlow{0%{opacity:.7}100%{opacity:1}}
+.hero-inner{padding:80px 0 56px;max-width:880px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border:1px solid #ffd16666;background:#ffd16612;border-radius:999px;color:var(--gold);font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.16em}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #38e5a41a,0 0 18px var(--green);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}
+h1{font-size:clamp(4.2rem,11vw,9.2rem);letter-spacing:-.08em;line-height:.78;margin:28px 0 22px;font-weight:1000;text-shadow:0 10px 60px #000a}
+h1 .outline{display:block;color:transparent;-webkit-text-stroke:1.5px #d8eaff;letter-spacing:.01em;font-size:.64em;margin-top:16px}
+.hero-sub{font-size:clamp(1.05rem,2vw,1.28rem);color:#d4e2f7;line-height:1.65;max-width:640px}
+.hero-sub b{color:var(--gold)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:38px}
+.pill{display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:13px;border:1px solid #d5e7ff40;background:#06142c90;backdrop-filter:blur(14px);transition:border-color .2s,transform .2s}
+.pill:hover{border-color:#5a9fe0;transform:translateY(-2px)}
+.pill small{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}
+.pill strong{display:block;font-size:.92rem;margin-top:2px}
+
+/* STATS */
+.section{padding:78px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;flex-wrap:wrap;margin-bottom:30px}
+.kicker{color:var(--cyan);text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:950}
+.title{font-size:clamp(2rem,4.5vw,3.3rem);letter-spacing:-.055em;margin:9px 0}
+.desc{color:var(--muted);line-height:1.65;max-width:720px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-38px;position:relative;z-index:2}
+.stat{padding:22px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#0c2850f0,#081a37f5);box-shadow:var(--shadow);backdrop-filter:blur(18px);transition:transform .25s var(--ease),border-color .25s}
+.stat:hover{transform:translateY(-4px);border-color:#3d8fd8}
+.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.78rem}
+.stat-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:#168bff1c;color:var(--cyan);font-size:1.15rem}
+.stat-num{font-size:2.1rem;font-weight:950;letter-spacing:-.05em;margin-top:12px}
+.stat-foot{font-size:.75rem;color:var(--muted);margin-top:4px}
+.stat-foot span{color:var(--green)}
+
+/* BOOKING */
+.booking-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;align-items:start}
+.glass{background:linear-gradient(145deg,#0a2041f2,#06152cf0);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.side-panel{padding:22px;position:sticky;top:95px}
+.side-title{font-size:.74rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;font-weight:900;margin:2px 0 14px}
+.role-choice{display:flex;align-items:center;gap:13px;width:100%;padding:15px;border:1px solid var(--line);background:#ffffff04;color:white;text-align:left;border-radius:14px;margin:9px 0;transition:.25s var(--ease)}
+.role-choice:hover{border-color:#168bff99;background:#168bff12}
+.role-choice.selected{border-color:var(--cyan);background:linear-gradient(110deg,#117ff530,#168bff0c);box-shadow:inset 0 0 0 1px #39d8ff30,0 0 24px #168bff15}
+.role-icon{width:44px;height:44px;flex-shrink:0;display:grid;place-items:center;background:#168bff22;border-radius:13px;font-size:1.3rem;transition:transform .3s var(--ease)}
+.role-choice.selected .role-icon{transform:scale(1.08);background:#168bff35}
+.role-choice strong{display:block;font-size:.92rem}
+.role-choice small{display:block;color:var(--muted);font-size:.76rem;margin-top:4px;line-height:1.4}
+.side-info{border-top:1px solid var(--line);margin-top:20px;padding-top:18px}
+.side-info p{font-size:.81rem;color:var(--muted);line-height:1.6;margin:0 0 12px}
+.side-info b{color:white}
+.map-card{height:150px;border:1px solid #238bff45;border-radius:14px;margin-top:14px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 30%,#0e4e8c70,transparent 60%),#06172d}
+.map-card:before{content:"";position:absolute;inset:-50%;background:repeating-linear-gradient(28deg,transparent 0 28px,#1a8aff1c 29px 30px),repeating-linear-gradient(145deg,transparent 0 38px,#1a8aff15 39px 40px);transform:rotate(-10deg)}
+.route-line{position:absolute;left:14%;top:58%;width:70%;height:2px;background:linear-gradient(90deg,var(--gold),var(--cyan));transform:rotate(-18deg);box-shadow:0 0 12px var(--cyan);border-radius:2px}
+.route-line:after{content:"✈";position:absolute;left:46%;top:-13px;color:var(--gold);font-size:1.3rem;animation:fly 3s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+.map-label{position:absolute;font-size:.68rem;color:#cfe5ff;font-weight:900}
+.map-label.a{left:12px;bottom:12px}
+.map-label.b{right:12px;top:12px}
+
+.main-booking{min-width:0}
+.tabs{display:flex;gap:8px;padding:15px 18px;border-bottom:1px solid var(--line);background:#ffffff03;flex-wrap:wrap}
+.tab{padding:10px 15px;border:1px solid transparent;background:transparent;color:var(--muted);border-radius:11px;font-weight:850;font-size:.86rem;transition:.2s}
+.tab:hover{color:white;background:#ffffff08}
+.tab.active{background:#168bff22;border-color:#168bff55;color:white}
+.form-area{padding:26px}
+.form-heading{display:flex;justify-content:space-between;align-items:start;gap:15px;margin-bottom:24px}
+.form-heading h3{font-size:1.3rem;margin:0 0 6px}
+.form-heading p{font-size:.84rem;color:var(--muted);margin:0;line-height:1.5}
+.secure-tag{font-size:.7rem;color:var(--green);border:1px solid #38e5a444;padding:7px 10px;border-radius:9px;white-space:nowrap;background:#38e5a40c}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{min-width:0;display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.8rem;color:#d7e6fa;font-weight:800}
+.req{color:var(--gold)}
+input,select,textarea{width:100%;background:#041229c0;border:1px solid #35557b;color:white;border-radius:12px;padding:13px 14px;outline:none;transition:.2s;min-width:0}
+input::placeholder,textarea::placeholder{color:#6f86a8}
+select option{background:#071a35}
+input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #39d8ff18}
+input:disabled,select:disabled,textarea:disabled{opacity:.45;cursor:not-allowed}
+input[readonly]{color:var(--cyan);font-weight:900;cursor:default}
+.field-hint{font-size:.7rem;color:#8198b9;line-height:1.4}
+.summary{margin-top:22px;padding:16px;border:1px solid #2e8dff45;border-radius:14px;background:linear-gradient(110deg,#0e55a51c,#39d8ff0a)}
+.summary-head{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;font-weight:900}
+.summary-data{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:12px;margin-top:13px}
+.summary-data small{display:block;color:var(--muted);font-size:.66rem}
+.summary-data b{display:block;font-size:.86rem;margin-top:4px;overflow-wrap:anywhere}
+.consent{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:.76rem;line-height:1.55}
+.consent input{width:auto;margin-top:3px;accent-color:var(--blue)}
+.form-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:22px}
+.form-bottom .btn{min-width:230px}
+.form-note{font-size:.74rem;color:var(--muted)}
+.notice{display:none;margin-top:16px;padding:14px 16px;border-radius:12px;font-size:.86rem;line-height:1.5}
+.notice.ok{display:block;background:#38e5a414;border:1px solid #38e5a455;color:#b6ffe2}
+.notice.err{display:block;background:#ff5d7d14;border:1px solid #ff5d7d55;color:#ffc0cd}
+
+/* ROSTER */
+.roster{padding:0}
+.roster-head{padding:24px 24px 16px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.roster-head h3{margin:5px 0;font-size:1.4rem}
+.roster-tools{display:flex;gap:8px;flex-wrap:wrap}
+.search{width:min(280px,100%)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding:0 24px 16px}
+.filter{border:1px solid var(--line);background:#ffffff05;color:var(--muted);border-radius:999px;padding:8px 13px;font-size:.76rem;font-weight:800;transition:.2s}
+.filter:hover{border-color:#5a9fe0;color:white}
+.filter.active{color:#06142c;background:var(--gold);border-color:var(--gold)}
+.table-wrap{overflow:auto;border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid #ffffff0c;font-size:.82rem}
+th{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:#8ea5c7;background:#ffffff04;white-space:nowrap}
+td{color:#e7efff}
+tbody tr{transition:background .15s}
+tbody tr:hover{background:#168bff0c}
+tbody tr:last-child td{border-bottom:0}
+.who{display:flex;align-items:center;gap:11px}
+.avatar{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#1554a0,#0c244b);border:1px solid #3d83d366;font-weight:900;color:#dff5ff;flex-shrink:0;font-size:.85rem}
+.who strong{display:block}
+.who small{display:block;color:var(--muted);margin-top:3px;font-size:.72rem}
+.role-badge,.status-badge{display:inline-flex;align-items:center;gap:5px;border-radius:8px;padding:5px 8px;font-size:.7rem;font-weight:900;white-space:nowrap}
+.role-badge.pilot{background:#168bff1c;color:#8fd0ff;border:1px solid #168bff44}
+.role-badge.atc{background:#b87aff1a;color:#d9b5ff;border:1px solid #b87aff44}
+.status-badge{background:#38e5a412;color:#8df6c9;border:1px solid #38e5a433}
+.company{display:flex;align-items:center;gap:8px}
+.company-mark{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:#ffffff0e;color:var(--gold);font-size:.68rem;font-weight:950}
+.empty{padding:42px!important;text-align:center;color:var(--muted)}
+.roster-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding:16px 24px;color:var(--muted);font-size:.75rem}
+
+/* INFO */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.info-card{padding:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#0c2850b0,#071831b0);transition:transform .25s var(--ease),border-color .25s}
+.info-card:hover{transform:translateY(-4px);border-color:#3d8fd8}
+.info-card .bigicon{font-size:1.6rem}
+.info-card h3{margin:16px 0 8px}
+.info-card p{margin:0;color:var(--muted);font-size:.87rem;line-height:1.65}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.timecard{padding:22px;border-left:3px solid var(--gold);background:#ffffff06;border-radius:0 14px 14px 0;transition:background .2s}
+.timecard:hover{background:#ffffff0a}
+.timecard time{color:var(--gold);font-size:.75rem;font-weight:950;letter-spacing:.1em}
+.timecard h3{margin:11px 0 7px}
+.timecard p{color:var(--muted);font-size:.83rem;line-height:1.6;margin:0}
+
+.cta{border:1px solid #258eff55;background:radial-gradient(ellipse at 80% 20%,#168bff28,transparent 42%),linear-gradient(120deg,#0d2a54,#091b38);border-radius:22px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.cta h2{margin:0 0 8px;font-size:clamp(1.5rem,3vw,2.3rem)}
+.cta p{margin:0;color:var(--muted);line-height:1.6}
+
+.footer{padding:34px 0 42px;border-top:1px solid var(--line);margin-top:42px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:.78rem}
+.footer strong{color:white}
+
+/* TOAST & MODAL */
+.toast{position:fixed;right:20px;bottom:20px;z-index:99;max-width:min(420px,calc(100vw - 40px));padding:15px 18px;border-radius:14px;background:#102c52;border:1px solid #4e8bc7;box-shadow:var(--shadow);display:none;line-height:1.5;font-size:.87rem;animation:toastIn .35s var(--ease)}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:80;background:#020917cc;backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(520px,100%);padding:26px;border:1px solid var(--line);border-radius:20px;background:#0a2040;box-shadow:var(--shadow);animation:modalIn .3s var(--ease)}
+@keyframes modalIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.modal h3{margin-top:0}
+.modal p{color:var(--muted);font-size:.86rem;line-height:1.6}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:22px}
+
+.mobile-dock{display:none}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .navlinks{display:none}
+  .menuBtn{display:block}
+  .navlinks.open{position:absolute;top:74px;left:3%;right:3%;display:flex;flex-direction:column;align-items:stretch;padding:12px;background:#081a35;border:1px solid var(--line);border-radius:14px;z-index:40}
+  .navlinks.open a{padding:13px}
+  .booking-grid{grid-template-columns:240px minmax(0,1fr)}
+  .summary-data{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  .shell{width:92%}
+  .hero{min-height:580px}
+  .hero-inner{padding:68px 0 72px}
+  .stats{grid-template-columns:repeat(2,1fr);margin-top:-28px}
+  .booking-grid{grid-template-columns:1fr}
+  .side-panel{position:static}
+  .role-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .role-choice{margin:0;padding:12px}
+  .role-icon{width:38px;height:38px}
+  .map-card{display:none}
+  .section{padding:58px 0}
+  .info-grid,.timeline{grid-template-columns:1fr}
+  .form-area{padding:20px}
+  .form-heading{flex-direction:column}
+  .roster-head{padding:18px}
+  .filters{padding:0 18px 15px}
+  .roster-foot{padding:15px 18px}
+  .navright .clock{display:none}
+}
+@media(max-width:480px){
+  .logo{font-size:.84rem}
+  .logo-mark{width:38px;height:38px}
+  .navright>.btn{padding:10px;font-size:.78rem}
+  .hero{min-height:610px}
+  h1{font-size:4.2rem}
+  .hero-pills{display:grid;grid-template-columns:1fr 1fr}
+  .pill{padding:11px}
+  .stats{gap:10px}
+  .stat{padding:16px}
+  .stat-num{font-size:1.65rem}
+  .role-options{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .summary-data{grid-template-columns:1fr 1fr}
+  .form-bottom .btn{width:100%;min-width:0}
+  .search{width:100%}
+  .roster-tools{width:100%}
+  .roster-tools .search{max-width:none}
+  .cta{padding:22px}
+  .mobile-dock{position:fixed;bottom:10px;left:10px;right:10px;z-index:25;display:flex;justify-content:space-around;padding:10px;background:#06142cf2;border:1px solid var(--line);border-radius:16px;backdrop-filter:blur(18px);box-shadow:var(--shadow)}
+  .mobile-dock a{display:flex;flex-direction:column;align-items:center;gap:3px;color:#b9cbe6;font-size:.65rem;padding:3px 8px}
+  .mobile-dock span{font-size:1.15rem}
+  .footer{padding-bottom:92px}
+}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<header class="topbar">
+  <div class="shell nav">
+    <a class="logo" href="#home">
+      <span class="logo-mark">✈</span>
+      <span>PTFS FRANCE<small>JAPAN · TOKYO RFE</small></span>
+    </a>
+    <nav class="navlinks" id="navlinks">
+      <a class="active" href="#home">⌂ Accueil</a>
+      <a href="#booking">✈ Booking</a>
+      <a href="#manifest">◉ Manifeste</a>
+      <a href="#eventinfo">ⓘ Infos</a>
+    </nav>
+    <div class="navright">
+      <span class="clock">◷ <span id="utcClock">--:--:--</span> UTC</span>
+      <a class="btn btn-primary" href="#booking">Réserver ↗</a>
+      <button class="menuBtn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="shell hero-inner">
+      <div class="eyebrow"><span class="pulse"></span> Real Flight Event · PTFS FRANCE Japan</div>
+      <h1>TOKYO<span class="outline">RFE / VTBS</span></h1>
+      <p class="hero-sub"><b>WELCOME TO JAPAN</b> — une destination, une communauté, un événement.<br>Prépare ton vol. Choisis ton rôle. Rejoins le manifeste.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#booking">✈ Réserver mon slot</a>
+        <a class="btn btn-glass" href="#manifest">◉ Voir les bookings <span id="heroBookingCount">0</span></a>
+      </div>
+      <div class="hero-pills">
+        <div class="pill"><span>▦</span><span><small>Date de l'événement</small><strong>19 octobre</strong></span></div>
+        <div class="pill"><span>◷</span><span><small>Créneau annoncé</small><strong>18Z — 20Z*</strong></span></div>
+        <div class="pill"><span>⌖</span><span><small>Réseau officiel</small><strong>PTFS uniquement</strong></span></div>
+        <div class="pill"><span>✦</span><span><small>Édition</small><strong>Tokyo · Japan</strong></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-top"><span>Réservations</span><span class="stat-icon">▤</span></div>
+        <div class="stat-num" id="statTotal">0</div>
+        <div class="stat-foot"><span>●</span> Bookings enregistrés ici</div>
+      </div>
+      <div class="stat">
+        <div class="stat-top"><span>Pilotes</span><span class="stat-icon">✈</span></div>
+        <div class="stat-num" id="statPilots">0</div>
+        <div class="stat-foot">Slots de vol réservés</div>
+      </div>
+      <div class="stat">
+        <div class="stat-top"><span>Contrôleurs ATC</span><span class="stat-icon">♜</span></div>
+        <div class="stat-num" id="statAtc">0</div>
+        <div class="stat-foot">Postes de contrôle demandés</div>
+      </div>
+      <div class="stat">
+        <div class="stat-top"><span>Réseau</span><span class="stat-icon">⌁</span></div>
+        <div class="stat-num">PTFS</div>
+        <div class="stat-foot"><span>●</span> Réseau unique de l'événement</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" id="booking">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Réserve ta place</div>
+          <h2 class="title">Le cockpit des bookings.</h2>
+          <p class="desc">Réserve un vol ou un poste ATC en quelques étapes. Vérifie le résumé avant d'envoyer ton booking et retrouve-le dans le manifeste.</p>
+        </div>
+        <div class="eyebrow">✦ Tokyo operations</div>
+      </div>
+
+      <div class="booking-grid">
+        <aside class="glass side-panel">
+          <div class="side-title">01 / Choisis ton rôle</div>
+          <div class="role-options">
+            <button type="button" class="role-choice selected" data-role="Pilote">
+              <span class="role-icon">✈</span>
+              <span><strong>Pilote</strong><small>Réserve ton vol</small></span>
+            </button>
+            <button type="button" class="role-choice" data-role="Contrôleur">
+              <span class="role-icon">♜</span>
+              <span><strong>Contrôleur</strong><small>Réserve un poste ATC</small></span>
+            </button>
+          </div>
+          <div class="side-info">
+            <div class="side-title">Réseau de l'événement</div>
+            <p>◉ <b>PTFS uniquement</b><br>Les réservations sont prévues pour l'événement PTFS FRANCE Japan.</p>
+            <div class="map-card">
+              <div class="route-line"></div>
+              <span class="map-label a">VTBS · DÉPART</span>
+              <span class="map-label b">TOKYO · ARRIVÉE</span>
+            </div>
+            <p style="margin-bottom:0">🔒 <b>Booking local</b><br>Cette démo stocke les données dans ce navigateur. Une base de données sera nécessaire pour les partager en ligne.</p>
+          </div>
+        </aside>
+
+        <div class="glass main-booking">
+          <div class="tabs">
+            <button class="tab active" type="button" data-tab="pilot">✈ Réservation pilote</button>
+            <button class="tab" type="button" data-tab="atc">♜ Réservation ATC</button>
+          </div>
+
+          <div class="form-area">
+            <div class="form-heading">
+              <div>
+                <h3 id="formTitle">Réserve ton vol</h3>
+                <p id="formDescription">Renseigne tes informations et prépare ta route.</p>
+              </div>
+              <span class="secure-tag">● PTFS · BOOKING</span>
+            </div>
+
+            <form id="bookingForm" novalidate>
+              <input type="hidden" name="role" id="roleInput" value="Pilote">
+
+              <div class="form-grid">
+                <!-- COMMON -->
+                <div class="field">
+                  <label for="discord">Identifiant Discord <span class="req">*</span></label>
+                  <input id="discord" name="discord" required maxlength="64" placeholder="ex. pseudo#1234 ou @pseudo" autocomplete="off">
+                  <span class="field-hint">Utilise ton identifiant Discord reconnaissable.</span>
+                </div>
+                <div class="field">
+                  <label for="callsign">Callsign <span class="req">*</span></label>
+                  <input id="callsign" name="callsign" required maxlength="12" pattern="[A-Za-z0-9-]{2,12}" placeholder="ex. AFR123 ou RJTT_TWR" title="2 à 12 caractères : lettres, chiffres ou tirets">
+                </div>
+                <div class="field">
+                  <label for="displayName">Nom / pseudo <span class="req">*</span></label>
+                  <input id="displayName" name="displayName" required maxlength="50" placeholder="ex. JohnSky">
+                </div>
+
+                <!-- PILOT ONLY -->
+                <div class="field pilot-only">
+                  <label for="airline">Compagnie aérienne <span class="req">*</span></label>
+                  <select id="airline" name="airline">
+                    <option value="">Sélectionner une compagnie</option>
+                    <option>Air France</option>
+                    <option>Japan Airlines (JAL)</option>
+                    <option>All Nippon Airways (ANA)</option>
+                    <option>Emirates</option>
+                    <option>Qatar Airways</option>
+                    <option>Lufthansa</option>
+                    <option>British Airways</option>
+                    <option>Turkish Airlines</option>
+                    <option>Singapore Airlines</option>
+                    <option>KLM</option>
+                    <option>United Airlines</option>
+                    <option>Delta Air Lines</option>
+                    <option>American Airlines</option>
+                    <option>Qantas</option>
+                    <option>Compagnie virtuelle</option>
+                    <option>Indépendant / autre</option>
+                  </select>
+                </div>
+                <div class="field pilot-only">
+                  <label for="departure">Aéroport de départ <span class="req">*</span></label>
+                  <input id="departure" name="departure" maxlength="4" pattern="[A-Za-z]{4}" placeholder="ex. VTBS" title="Code OACI à quatre lettres">
+                </div>
+                <div class="field pilot-only">
+                  <label for="arrival">Aéroport d'arrivée <span class="req">*</span></label>
+                  <input id="arrival" name="arrival" maxlength="4" pattern="[A-Za-z]{4}" placeholder="ex. RJTT" title="Code OACI à quatre lettres">
+                </div>
+                <div class="field pilot-only">
+                  <label for="aircraft">Appareil <span class="req">*</span></label>
+                  <select id="aircraft" name="aircraft">
+                    <option value="">Sélectionner un appareil</option>
+                    <option>A320</option>
+                    <option>A321</option>
+                    <option>A330</option>
+                    <option>A350</option>
+                    <option>A380</option>
+                    <option>B737</option>
+                    <option>B747</option>
+                    <option>B777</option>
+                    <option>B787</option>
+                    <option>Autre appareil</option>
+                  </select>
+                </div>
+
+                <!-- ATC ONLY -->
+                <div class="field atc-only" hidden>
+                  <label for="position">Poste ATC souhaité <span class="req">*</span></label>
+                  <select id="position" name="position">
+                    <option value="">Sélectionner un poste</option>
+                    <option value="TWR — Tower">TWR — Tower</option>
+                    <option value="APP — Approach">APP — Approach</option>
+                    <option value="DEP — Departure">DEP — Departure</option>
+                    <option value="GND — Ground">GND — Ground</option>
+                    <option value="DEL — Clearance Delivery">DEL — Clearance Delivery</option>
+                    <option value="ATIS — Information">ATIS — Information</option>
+                    <option value="CTR — Center">CTR — Center</option>
+                    <option value="Selon les besoins">Selon les besoins</option>
+                  </select>
+                </div>
+                <div class="field atc-only" hidden>
+                  <label for="availability">Disponibilité <span class="req">*</span></label>
+                  <select id="availability" name="availability">
+                    <option value="">Sélectionner un créneau</option>
+                    <option value="18Z–19Z">18Z–19Z</option>
+                    <option value="19Z–20Z">19Z–20Z</option>
+                    <option value="18Z–20Z">18Z–20Z (complet)</option>
+                  </select>
+                </div>
+                <div class="field atc-only" hidden>
+                  <label for="facility">Zone / Facility</label>
+                  <select id="facility" name="facility">
+                    <option value="">Optionnel</option>
+                    <option>RJTT / Tokyo Haneda</option>
+                    <option>RJAA / Narita</option>
+                    <option>VTBS / Bangkok (départ)</option>
+                    <option>Général / Multi</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="network">Réseau</label>
+                  <input id="network" name="network" value="PTFS" readonly>
+                </div>
+
+                <div class="field full">
+                  <label for="notes">Note pour l'équipe <span style="color:var(--muted);font-weight:500">(facultatif)</span></label>
+                  <textarea id="notes" name="notes" rows="2" maxlength="240" placeholder="Infos complémentaires, préférences, demandes…"></textarea>
+                </div>
+
+                <div class="field full">
+                  <label class="consent">
+                    <input type="checkbox" id="consent" required>
+                    <span>Je confirme les informations et j'accepte que mon booking (nom/pseudo, Discord, rôle et informations de vol/ATC) apparaisse dans le manifeste de cette démo. <b class="req">*</b></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="summary">
+                <div class="summary-head">
+                  <span>▣ Résumé du booking</span>
+                  <span id="summaryRole">PILOTE</span>
+                </div>
+                <div class="summary-data">
+                  <div><small>Compagnie / poste</small><b id="sumAirline">À choisir</b></div>
+                  <div><small>Callsign</small><b id="sumCallsign">—</b></div>
+                  <div><small>Route / créneau</small><b id="sumRoute">VTBS → RJTT</b></div>
+                  <div><small>Réseau</small><b>PTFS</b></div>
+                </div>
+              </div>
+
+              <div class="form-bottom">
+                <button class="btn btn-primary" type="submit" id="submitBtn">✈ Confirmer mon booking <span>↗</span></button>
+                <span class="form-note">Champs marqués * obligatoires</span>
+              </div>
+              <div id="formNotice" class="notice" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="manifest" style="padding-top:10px">
+    <div class="shell">
+      <div class="glass roster">
+        <div class="roster-head">
+          <div>
+            <div class="kicker">Le tableau opérationnel</div>
+            <h3>Manifeste des bookings <span style="color:var(--cyan)">↗</span></h3>
+            <p class="desc" style="font-size:.82rem">Toutes les réservations enregistrées sur cet appareil, pilotes et contrôleurs confondus.</p>
+          </div>
+          <div class="roster-tools">
+            <input class="search" id="searchBookings" type="search" placeholder="⌕ Rechercher Discord, callsign…">
+            <button class="btn btn-glass btn-sm" id="exportCsv" type="button">⇩ Export CSV</button>
+          </div>
+        </div>
+        <div class="filters">
+          <button class="filter active" data-filter="Tous" type="button">Tous <span id="countAll">0</span></button>
+          <button class="filter" data-filter="Pilote" type="button">✈ Pilotes <span id="countPilots">0</span></button>
+          <button class="filter" data-filter="Contrôleur" type="button">♜ Contrôleurs <span id="countAtc">0</span></button>
+          <button class="filter" data-filter="Aujourd'hui" type="button">Récents</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th># / Booking</th>
+                <th>Rôle</th>
+                <th>Callsign</th>
+                <th>Compagnie / poste</th>
+                <th>Route / créneau</th>
+                <th>Réseau</th>
+                <th>État</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="bookingRows">
+              <tr><td colspan="8" class="empty">✦ Aucun booking pour le moment.<br><span style="font-size:.78rem">Réserve une place pour faire apparaître le premier vol.</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="roster-foot">
+          <span id="rosterSummary">0 booking · PTFS</span>
+          <span>● <span style="color:var(--green)">Manifeste local</span> · actualisé à l'écran</span>
+          <button class="btn btn-glass btn-sm" id="clearBookings" type="button">Effacer les données locales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="eventinfo">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <div class="kicker">À propos de l'événement</div>
+          <h2 class="title">Chaque slot compte.</h2>
+          <p class="desc">Un point de rencontre pour les pilotes, les contrôleurs et la communauté PTFS FRANCE Japan.</p>
+        </div>
+      </div>
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="bigicon">🛫</div>
+          <h3>Réserve ton vol</h3>
+          <p>Choisis une compagnie, renseigne ton callsign, ton appareil et ta route. Vérifie les consignes publiées par l'organisation avant de voler.</p>
+        </article>
+        <article class="info-card">
+          <div class="bigicon">🎧</div>
+          <h3>Prends un poste ATC</h3>
+          <p>Choisis le poste et le créneau qui correspondent à tes disponibilités. Les postes demandés sont visibles dans le manifeste.</p>
+        </article>
+        <article class="info-card">
+          <div class="bigicon">🌸</div>
+          <h3>Rejoins la communauté</h3>
+          <p>Retrouve les autres participants via les canaux officiels de la communauté et partage l'expérience Tokyo RFE.</p>
+        </article>
+      </div>
+
+      <div style="height:36px"></div>
+      <div class="section-head">
+        <div>
+          <div class="kicker">Planning indicatif</div>
+          <h2 class="title">La fenêtre opérationnelle.</h2>
+          <p class="desc">Horaires fournis pour la maquette — à confirmer par l'équipe organisatrice.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="timecard">
+          <time>AVANT 18Z</time>
+          <h3>Préparation</h3>
+          <p>Vérifie ta réservation, ton appareil, ta route et les consignes officielles de l'événement.</p>
+        </article>
+        <article class="timecard">
+          <time>18Z — 19Z</time>
+          <h3>Ouverture des opérations</h3>
+          <p>Rejoins la session PTFS et suis les annonces et consignes de l'équipe.</p>
+        </article>
+        <article class="timecard">
+          <time>19Z — 20Z</time>
+          <h3>Pic de trafic & clôture</h3>
+          <p>Maintiens l'écoute, respecte les procédures publiées et suis les instructions de l'organisation.</p>
+        </article>
+      </div>
+
+      <div style="height:35px"></div>
+      <div class="cta">
+        <div>
+          <h2>Prêt à rejoindre Tokyo ?</h2>
+          <p>Ton prochain vol commence avec une réservation.<br>PTFS FRANCE Japan · One sky. One community. One event.</p>
+        </div>
+        <a class="btn btn-primary" href="#booking">Réserver ma place ✈</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-row">
+    <div><strong>PTFS FRANCE <span style="color:var(--gold)">JAPAN</span></strong><br>TOKYO RFE · Real Flight Event</div>
+    <div>Maquette autonome HTML · Données locales au navigateur</div>
+    <a href="#home">Retour en haut ↑</a>
+  </div>
+</footer>
+
+<div class="mobile-dock">
+  <a href="#home"><span>⌂</span>Accueil</a>
+  <a href="#booking"><span>✈</span>Booking</a>
+  <a href="#manifest"><span>◉</span>Manifeste</a>
+  <a href="#eventinfo"><span>ⓘ</span>Infos</a>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <h3 id="modalTitle">Confirmer l'action</h3>
+    <p id="modalText">Confirmer ?</p>
+    <div class="modal-actions">
+      <button class="btn btn-glass" id="modalCancel">Annuler</button>
+      <button class="btn btn-danger" id="modalConfirm">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const KEY = 'tokyoRfeBookingsUltraV4';
+  const $ = id => document.getElementById(id);
+  let activeRole = 'Pilote';
+  let activeFilter = 'Tous';
+  let pendingAction = null;
+  let toastTimer;
+
+  const form = $('bookingForm');
+  const pilotFields = document.querySelectorAll('.pilot-only');
+  const atcFields = document.querySelectorAll('.atc-only');
+
+  function all() {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+    catch { return []; }
+  }
+  function save(data) {
+    localStorage.setItem(KEY, JSON.stringify(data));
+  }
+  function esc(v) {
+    return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function toast(message) {
+    const el = $('toast');
+    el.textContent = message;
+    el.style.display = 'block';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.style.display = 'none', 4000);
+  }
+  function confirmAction(text, action) {
+    $('modalText').textContent = text;
+    $('confirmModal').classList.add('open');
+    pendingAction = action;
+  }
+
+  $('modalCancel').onclick = () => {
+    $('confirmModal').classList.remove('open');
+    pendingAction = null;
+  };
+  $('modalConfirm').onclick = () => {
+    const action = pendingAction;
+    $('confirmModal').classList.remove('open');
+    pendingAction = null;
+    if (action) action();
+  };
+  $('confirmModal').addEventListener('click', e => {
+    if (e.target === $('confirmModal')) $('modalCancel').click();
+  });
+
+  function setRole(role) {
+    activeRole = role;
+    $('roleInput').value = role;
+
+    document.querySelectorAll('.role-choice').forEach(b => {
+      b.classList.toggle('selected', b.dataset.role === role);
+    });
+    document.querySelectorAll('.tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.tab === (role === 'Pilote' ? 'pilot' : 'atc'));
+    });
+
+    const isAtc = role === 'Contrôleur';
+
+    // Toggle visibility + disabled + required cleanly
+    pilotFields.forEach(el => {
+      el.hidden = isAtc;
+      el.querySelectorAll('input, select, textarea').forEach(x => {
+        x.disabled = isAtc;
+        x.required = !isAtc;
+        if (isAtc) {
+          // clear pilot values when switching to ATC so they don't pollute
+          if (x.tagName === 'SELECT') x.selectedIndex = 0;
+          else if (x.type !== 'hidden') x.value = '';
+        }
+      });
+    });
+
+    atcFields.forEach(el => {
+      el.hidden = !isAtc;
+      el.querySelectorAll('input, select, textarea').forEach(x => {
+        x.disabled = !isAtc;
+        x.required = isAtc;
+        if (!isAtc) {
+          if (x.tagName === 'SELECT') x.selectedIndex = 0;
+          else if (x.type !== 'hidden') x.value = '';
+        }
+      });
+    });
+
+    // Explicit required for the key ATC fields
+    $('position').required = isAtc;
+    $('availability').required = isAtc;
+    $('airline').required = !isAtc;
+    $('departure').required = !isAtc;
+    $('arrival').required = !isAtc;
+    $('aircraft').required = !isAtc;
+
+    $('formTitle').textContent = isAtc ? 'Réserve ton poste ATC' : 'Réserve ton vol';
+    $('formDescription').textContent = isAtc
+      ? 'Choisis une position, ton créneau et ta disponibilité pour l’événement.'
+      : 'Renseigne tes informations et prépare ta route.';
+    $('submitBtn').innerHTML = isAtc
+      ? '♜ Réserver en tant que contrôleur <span>↗</span>'
+      : '✈ Confirmer mon booking <span>↗</span>';
+    $('summaryRole').textContent = isAtc ? 'CONTRÔLEUR' : 'PILOTE';
+
+    // Reset notice
+    $('formNotice').className = 'notice';
+    $('formNotice').textContent = '';
+
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const isAtc = activeRole === 'Contrôleur';
+    $('sumAirline').textContent = isAtc
+      ? ($('position').value || 'Poste à choisir')
+      : ($('airline').value || 'Compagnie à choisir');
+    $('sumCallsign').textContent = ($('callsign').value || '').toUpperCase() || '—';
+    $('sumRoute').textContent = isAtc
+      ? ($('availability').value || 'Créneau à choisir')
+      : (($('departure').value || 'VTBS').toUpperCase() + ' → ' + ($('arrival').value || 'RJTT').toUpperCase());
+  }
+
+  // Role switchers
+  document.querySelectorAll('.role-choice').forEach(b => {
+    b.addEventListener('click', () => setRole(b.dataset.role));
+  });
+  document.querySelectorAll('.tab').forEach(b => {
+    b.addEventListener('click', () => setRole(b.dataset.tab === 'atc' ? 'Contrôleur' : 'Pilote'));
+  });
+
+  // Live summary
+  ['airline', 'callsign', 'departure', 'arrival', 'position', 'availability', 'facility'].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener('input', updateSummary);
+      el.addEventListener('change', updateSummary);
+    }
+  });
+
+  // Submit
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Force re-evaluation of required after role switch
+    const isAtc = activeRole === 'Contrôleur';
+    $('position').required = isAtc;
+    $('availability').required = isAtc;
+    $('airline').required = !isAtc;
+    $('departure').required = !isAtc;
+    $('arrival').required = !isAtc;
+    $('aircraft').required = !isAtc;
+
+    if (!form.reportValidity()) {
+      $('formNotice').className = 'notice err';
+      $('formNotice').textContent = 'Merci de remplir correctement tous les champs obligatoires.';
+      return;
+    }
+
+    const d = Object.fromEntries(new FormData(form).entries());
+    d.role = activeRole;
+    d.network = 'PTFS';
+    d.callsign = (d.callsign || '').trim().toUpperCase();
+    d.departure = (d.departure || '').trim().toUpperCase();
+    d.arrival = (d.arrival || '').trim().toUpperCase();
+    d.discord = (d.discord || '').trim();
+    d.displayName = (d.displayName || '').trim();
+    d.facility = (d.facility || '').trim();
+    d.id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+    d.createdAt = new Date().toISOString();
+    d.status = 'Réservé';
+
+    // Clean unused fields
+    if (isAtc) {
+      d.airline = '';
+      d.departure = '';
+      d.arrival = '';
+      d.aircraft = '';
+    } else {
+      d.position = '';
+      d.availability = '';
+      d.facility = '';
+    }
+
+    const data = all();
+
+    // Duplicate callsign (global)
+    if (data.some(p => p.callsign.toLowerCase() === d.callsign.toLowerCase())) {
+      $('formNotice').className = 'notice err';
+      $('formNotice').textContent = 'Ce callsign est déjà utilisé dans les bookings de ce navigateur. Vérifie-le ou choisis un autre.';
+      return;
+    }
+
+    // Duplicate ATC position + availability (unless "Selon les besoins")
+    if (isAtc && d.position !== 'Selon les besoins') {
+      const conflict = data.some(p =>
+        p.role === 'Contrôleur' &&
+        p.position === d.position &&
+        p.availability === d.availability
+      );
+      if (conflict) {
+        $('formNotice').className = 'notice err';
+        $('formNotice').textContent = 'Ce poste est déjà réservé sur ce créneau dans cette démo. Choisis un autre poste ou créneau.';
+        return;
+      }
+    }
+
+    try {
+      data.push(d);
+      save(data);
+    } catch (err) {
+      $('formNotice').className = 'notice err';
+      $('formNotice').textContent = 'Impossible de sauvegarder dans ce navigateur. Vérifie ses paramètres de stockage.';
+      return;
+    }
+
+    $('formNotice').className = 'notice ok';
+    $('formNotice').textContent = isAtc
+      ? '✓ Poste ATC enregistré ! Il apparaît maintenant dans le manifeste de ce navigateur.'
+      : '✓ Booking enregistré ! Il est maintenant visible dans le manifeste de ce navigateur.';
+
+    form.reset();
+    $('network').value = 'PTFS';
+    setRole(activeRole);
+    render();
+    toast((isAtc ? 'ATC réservé · ' : 'Booking enregistré · ') + d.callsign);
+    $('manifest').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  function render() {
+    const data = all();
+    const pilots = data.filter(x => x.role === 'Pilote').length;
+    const atc = data.filter(x => x.role === 'Contrôleur').length;
+
+    $('statTotal').textContent = data.length;
+    $('statPilots').textContent = pilots;
+    $('statAtc').textContent = atc;
+    $('heroBookingCount').textContent = data.length;
+    $('countAll').textContent = data.length;
+    $('countPilots').textContent = pilots;
+    $('countAtc').textContent = atc;
+    $('rosterSummary').textContent = `${data.length} booking${data.length === 1 ? '' : 's'} · PTFS`;
+
+    const q = $('searchBookings').value.trim().toLowerCase();
+    let filtered = data.filter(p => {
+      const matchFilter = activeFilter === 'Tous' ||
+        (activeFilter === "Aujourd'hui"
+          ? Date.now() - new Date(p.createdAt).getTime() < 86400000
+          : p.role === activeFilter);
+      const hay = [p.displayName, p.discord, p.callsign, p.airline, p.position, p.departure, p.arrival, p.availability, p.facility].join(' ').toLowerCase();
+      return matchFilter && hay.includes(q);
+    });
+
+    filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    document.querySelectorAll('.filter').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === activeFilter);
+    });
+
+    if (!filtered.length) {
+      $('bookingRows').innerHTML = `<tr><td colspan="8" class="empty">✦ ${data.length ? 'Aucun résultat pour ces filtres.' : 'Aucun booking pour le moment.'}<br><span style="font-size:.78rem">${data.length ? 'Essaie un autre filtre ou une autre recherche.' : 'Réserve une place pour faire apparaître le premier vol.'}</span></td></tr>`;
+      return;
+    }
+
+    $('bookingRows').innerHTML = filtered.map((p, i) => {
+      const isAtc = p.role === 'Contrôleur';
+      const route = isAtc
+        ? (p.availability || '—') + (p.facility ? ` · ${p.facility}` : '')
+        : `${p.departure || '—'} → ${p.arrival || '—'}`;
+      const main = isAtc ? (p.position || '—') : (p.airline || '—');
+      const mark = (main.replace(/[^A-Za-z]/g, '').slice(0, 2) || '✦').toUpperCase();
+
+      return `<tr>
+        <td>
+          <span style="color:var(--muted);font-variant-numeric:tabular-nums">#${String(i + 1).padStart(2, '0')}</span><br>
+          <small style="color:#7189aa">${esc(p.id.slice(0, 7).toUpperCase())}</small>
+        </td>
+        <td><span class="role-badge ${isAtc ? 'atc' : 'pilot'}">${isAtc ? '♜ ATC' : '✈ Pilote'}</span></td>
+        <td>
+          <div class="who">
+            <span class="avatar">${esc((p.callsign || '?').slice(0, 2))}</span>
+            <span>
+              <strong>${esc(p.callsign)}</strong>
+              <small>${esc(p.displayName)}</small>
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="company">
+            <span class="company-mark">${esc(mark)}</span>
+            <span>${esc(main)}</span>
+          </div>
+        </td>
+        <td>${esc(route)}</td>
+        <td><span class="status-badge">● PTFS</span></td>
+        <td><span class="status-badge">${esc(p.status || 'Réservé')}</span></td>
+        <td>
+          <button class="btn btn-glass btn-sm delete-booking" data-id="${esc(p.id)}" title="Supprimer cette réservation" aria-label="Supprimer le booking">×</button>
+        </td>
+      </tr>`;
+    }).join('');
+
+    document.querySelectorAll('.delete-booking').forEach(b => {
+      b.addEventListener('click', () => {
+        confirmAction('Supprimer ce booking local ? Cette action est irréversible.', () => {
+          save(all().filter(p => p.id !== b.dataset.id));
+          render();
+          toast('Booking supprimé');
+        });
+      });
+    });
+  }
+
+  // Filters & search
+  document.querySelectorAll('.filter').forEach(b => {
+    b.addEventListener('click', () => {
+      activeFilter = b.dataset.filter;
+      render();
+    });
+  });
+  $('searchBookings').addEventListener('input', render);
+
+  // Export CSV
+  $('exportCsv').addEventListener('click', () => {
+    const data = all();
+    if (!data.length) {
+      toast('Aucun booking à exporter.');
+      return;
+    }
+    const cols = ['role', 'displayName', 'discord', 'callsign', 'airline', 'departure', 'arrival', 'aircraft', 'position', 'availability', 'facility', 'network', 'notes', 'status', 'createdAt'];
+    const csv = [
+      cols.join(';'),
+      ...data.map(p => cols.map(k => '"' + String(p[k] || '').replace(/"/g, '""') + '"').join(';'))
+    ].join('\r\n');
+    const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'tokyo-rfe-manifeste.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Export CSV prêt');
+  });
+
+  // Clear all
+  $('clearBookings').addEventListener('click', () => {
+    confirmAction('Effacer tous les bookings sauvegardés dans ce navigateur ? Cette action ne peut pas être annulée.', () => {
+      localStorage.removeItem(KEY);
+      render();
+      toast('Bookings locaux effacés');
+    });
+  });
+
+  // Mobile menu
+  $('menuBtn').addEventListener('click', () => {
+    $('navlinks').classList.toggle('open');
+  });
+  document.querySelectorAll('#navlinks a').forEach(a => {
+    a.addEventListener('click', () => $('navlinks').classList.remove('open'));
+  });
+
+  // UTC clock
+  function tick() {
+    const d = new Date();
+    $('utcClock').textContent = [d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()]
+      .map(n => String(n).padStart(2, '0')).join(':');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Init
+  setRole('Pilote');
+  render();
+})();
+</script>
+</body>
+</html>
